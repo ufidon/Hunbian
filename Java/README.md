@@ -3,27 +3,32 @@
 
 ##11102016.Java包与对应结构
 ```bash
-├─classes
-│  └─cis
-│      └─edu
-│          └─edgewood
-│              └─animals
-│                      Animal.class
-│                      MammalInt.class
+├─源码
+│  └─中国
+│      └─广东
+│          └─深圳
+│              └─动物园
+│                      动物.java
+│                      哺乳动物.java
 │
-└─sources
-    └─cis
-        └─edu
-            └─edgewood
-                └─animals
-                        Animal.java
-                        MammalInt.java
+└─类群
+    └─中国
+        └─广东
+            └─深圳
+                └─动物园
+                        动物.class
+                        哺乳动物.class
 ```
 
 ```java
 package cis.edu.edgewood.animals;
 ```
 ##编译:
-	 javac -verbose -d classes -sourcepath sources sources\cis\edu\edgewood\animals\MammalInt.java -cp classes
+```bash
+	 javac -encoding "UTF-8" -d 类群 -sourcepath 源码 源码\中国\广东\深圳\动物园\动物.java
+	 javac -encoding "UTF-8" -d 类群 -sourcepath 源码 源码\中国\广东\深圳\动物园\哺乳动物.java
+```	 
 ##运行:
-	 java -verbose -cp classes cis.edu.edgewood.animals.MammalInt
+```bash
+	java -cp 类群 中国.广东.深圳.动物园.哺乳动物
+```
