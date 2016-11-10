@@ -21,7 +21,7 @@
 ```
 
 ```java
-package cis.edu.edgewood.animals;
+package 中国.广东.深圳.动物园;
 ```
 ##编译:
 ```bash
