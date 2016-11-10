@@ -1,5 +1,5 @@
 package 中国.广东.深圳.动物园;
-/* File name : MammalInt.java */
+/* 档名 : 哺乳动物.java */
 
 public class 哺乳动物 implements 动物 {
 

@@ -1,4 +1,4 @@
-/* File name : Animal.java */
+/* 档名 : 动物.java */
 package 中国.广东.深圳.动物园;
 
 interface 动物 {
