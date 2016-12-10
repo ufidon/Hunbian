@@ -1,0 +1,13 @@
+.*
+nbproject
+_*
+*.class
+*.exe
+*.dll
+*.a
+*.so
+*.o
+visual-studio
+
+
+!/.gitignore
