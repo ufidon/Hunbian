@@ -14,6 +14,9 @@ int main()
 	setlocale(LC_CTYPE, "");
 	wprintf(L"中文字符串及索引:\n\t%ls %lc\n", a, a[3]);      // 中文输出正常
 
-  return 0;
+	wchar_t 名字[16];
+	wscanf(L"%ls", &名字);
+	wprintf(L"%ls, 欢迎你!\n", 名字);
+	return 0;
 }
 
