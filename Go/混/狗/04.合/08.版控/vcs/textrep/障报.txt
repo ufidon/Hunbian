@@ -1,0 +1,151 @@
+总故障数：61 
+-------------------------------------------------
+障号：		33416
+用户：		bserdar
+标题：		encoding/json: This CL adds Decoder.InternKeys
+天数:		106751天
+-------------------------------------------------
+障号：		45628
+用户：		pgundlach
+标题：		encoding/xml: add Decoder.InputPos
+天数:		106751天
+-------------------------------------------------
+障号：		43716
+用户：		ggaaooppeenngg
+标题：		encoding/json: increment byte counter when using decoder.Token
+天数:		106751天
+-------------------------------------------------
+障号：		46065
+用户：		vipally
+标题：		proposal: encoding/json: add FlexObject for encoding/decoding be
+天数:		106751天
+-------------------------------------------------
+障号：		42571
+用户：		dsnet
+标题：		encoding/json: clarify Decoder.InputOffset semantics
+天数:		106751天
+-------------------------------------------------
+障号：		11046
+用户：		kurin
+标题：		encoding/json: Decoder internally buffers full input
+天数:		106751天
+-------------------------------------------------
+障号：		32779
+用户：		rsc
+标题：		encoding/json: memoize strings during decode
+天数:		106751天
+-------------------------------------------------
+障号：		5901
+用户：		rsc
+标题：		encoding/json: allow per-Encoder/per-Decoder registration of mar
+天数:		106751天
+-------------------------------------------------
+障号：		34543
+用户：		maxatome
+标题：		encoding/json: Unmarshal & json.(*Decoder).Token report differen
+天数:		106751天
+-------------------------------------------------
+障号：		36225
+用户：		dsnet
+标题：		encoding/json: the Decoder.Decode API lends itself to misuse
+天数:		106751天
+-------------------------------------------------
+障号：		14750
+用户：		cyberphone
+标题：		encoding/json: parser ignores the case of member names
+天数:		106751天
+-------------------------------------------------
+障号：		43401
+用户：		opennota
+标题：		proposal: encoding/csv: add Reader.InputOffset method
+天数:		106751天
+-------------------------------------------------
+障号：		29035
+用户：		jaswdr
+标题：		proposal: encoding/json: add error var to compare  the returned 
+天数:		106751天
+-------------------------------------------------
+障号：		31701
+用户：		lr1980
+标题：		encoding/json: second decode after error impossible
+天数:		106751天
+-------------------------------------------------
+障号：		40128
+用户：		rogpeppe
+标题：		proposal: encoding/json: garbage-free reading of tokens
+天数:		106751天
+-------------------------------------------------
+障号：		40127
+用户：		rogpeppe
+标题：		encoding/json: add Encoder.EncodeToken method
+天数:		106751天
+-------------------------------------------------
+障号：		45512
+用户：		colin-sitehost
+标题：		encoding/json: cannot unmarshal custom interface value
+天数:		106751天
+-------------------------------------------------
+障号：		40982
+用户：		Segflow
+标题：		encoding/json: use different error type for unknown field if the
+天数:		106751天
+-------------------------------------------------
+障号：		40983
+用户：		Segflow
+标题：		encoding/json: return a different error type for unknown field i
+天数:		106751天
+-------------------------------------------------
+障号：		28923
+用户：		mvdan
+标题：		encoding/json: speed up the decoding scanner
+天数:		106751天
+-------------------------------------------------
+障号：		43513
+用户：		AlexanderYastrebov
+标题：		encoding/json: add line number to SyntaxError
+天数:		106751天
+-------------------------------------------------
+障号：		41144
+用户：		alvaroaleman
+标题：		encoding/json: Unmarshaler breaks DisallowUnknownFields
+天数:		106751天
+-------------------------------------------------
+障号：		16212
+用户：		josharian
+标题：		encoding/json: do all reflect work before decoding
+天数:		106751天
+-------------------------------------------------
+障号：		6647
+用户：		btracey
+标题：		x/tools/cmd/godoc: display type kind of each named type
+天数:		106751天
+-------------------------------------------------
+障号：		29750
+用户：		jacoelho
+标题：		cmd/vet: stdmethods check gets confused if run on a package name
+天数:		106751天
+-------------------------------------------------
+障号：		34564
+用户：		mdempsky
+标题：		go/internal/gcimporter: single source of truth for decoder logic
+天数:		106751天
+-------------------------------------------------
+障号：		33835
+用户：		Qhesz
+标题：		encoding/json: unmarshalling null into non-nullable golang types
+天数:		106751天
+-------------------------------------------------
+障号：		33854
+用户：		Qhesz
+标题：		encoding/json: unmarshal option to treat omitted fields as null
+天数:		106751天
+-------------------------------------------------
+障号：		30301
+用户：		zelch
+标题：		encoding/xml: option to treat unknown fields as an error
+天数:		106751天
+-------------------------------------------------
+障号：		26946
+用户：		deuill
+标题：		encoding/json: clarify what happens when unmarshaling into a non
+天数:		106751天
