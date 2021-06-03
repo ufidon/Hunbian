@@ -26,7 +26,7 @@ func (取 *Q取词器) Q翌词() token.C词 {
 			文 := 取.文
 			取.读字()
 			文值 := string(文) + string(取.文)
-			词 = token.C词{C类: token.S加, C值: 文值}
+			词 = token.C词{C类: token.S等于, C值: 文值}
 		} else {
 			词 = 新词(token.S赋, 取.文)
 		}
