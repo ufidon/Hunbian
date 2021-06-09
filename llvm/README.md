@@ -20,6 +20,8 @@ cd llvm-project && mkdir build && cd build
 
 # 运行脚本/zao.sh进行配置
 ninja # 开始编译
+ninja check-clang # 测试
+ninja install # 安装
 
 ```
 
