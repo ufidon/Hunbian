@@ -109,8 +109,9 @@ TEXT
 		)+
 	;
 
+// 增加中文支持
 fragment
-ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+ID  :	('a'..'z'|'A'..'Z'|'_'|'\u2e80'..'\u9fff') ('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'\u2e80'..'\u9fff')*
     ;
 
 /** Don't allow an = as first char to prevent $x == 3; kind of stuff. */
