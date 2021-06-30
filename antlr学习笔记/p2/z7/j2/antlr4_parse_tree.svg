@@ -1,0 +1,55 @@
+<svg width="1018.6000000000001" height="652.3000000000001" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><line x1="134.5" y1="8.0" x2="68.0" y2="33.0" style="stroke:black; stroke-width:1px;" />
+<line x1="68.0" y1="41.0" x2="13.0" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<line x1="68.0" y1="41.0" x2="38.5" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<line x1="68.0" y1="41.0" x2="79.5" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<line x1="68.0" y1="41.0" x2="123.0" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<line x1="134.5" y1="8.0" x2="201.0" y2="33.0" style="stroke:black; stroke-width:1px;" />
+<line x1="201.0" y1="41.0" x2="151.0" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<line x1="201.0" y1="41.0" x2="176.5" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<line x1="201.0" y1="41.0" x2="212.5" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<line x1="201.0" y1="41.0" x2="251.0" y2="66.0" style="stroke:black; stroke-width:1px;" />
+<rect x="138.0" y="66.0" width="26.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="140" y="75" style="font-family:sans-serif;font-size:10px;">
+名字
+</text>
+<rect x="127.0" y="0.0" width="15.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="129" y="9" style="font-family:sans-serif;font-size:10px;">
+档
+</text>
+<rect x="0.0" y="66.0" width="26.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="2" y="75" style="font-family:sans-serif;font-size:10px;">
+身高
+</text>
+<rect x="55.0" y="33.0" width="26.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="57" y="42" style="font-family:sans-serif;font-size:10px;">
+属性
+</text>
+<rect x="188.0" y="33.0" width="26.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="190" y="42" style="font-family:sans-serif;font-size:10px;">
+属性
+</text>
+<rect x="33.0" y="66.0" width="11.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="35" y="75" style="font-family:sans-serif;font-size:10px;">
+=
+</text>
+<rect x="51.0" y="66.0" width="57.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="53" y="75" style="font-family:sans-serif;font-size:10px;">
+"172厘米"
+</text>
+<rect x="189.0" y="66.0" width="47.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="191" y="75" style="font-family:sans-serif;font-size:10px;">
+"李小龙"
+</text>
+<rect x="171.0" y="66.0" width="11.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="173" y="75" style="font-family:sans-serif;font-size:10px;">
+=
+</text>
+<rect x="243.0" y="66.0" width="16.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="245" y="75" style="font-family:sans-serif;font-size:10px;">
+\n
+</text>
+<rect x="115.0" y="66.0" width="16.0" height="16.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="117" y="75" style="font-family:sans-serif;font-size:10px;">
+\n
+</text>
+</svg>
