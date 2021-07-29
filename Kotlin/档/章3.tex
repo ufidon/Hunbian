@@ -1,0 +1,246 @@
+\chapter{函式}
+
+打开IDEA, 在第\ref{子节:集程1}节中创建的“问候”程序将自动打开。
+\section{新建并运行Kotlin文件}
+在工程面板中，右键点击“问候（工程名）-> src -> main -> kotlin”目录，从弹出菜单中选 New->Kotlin Class/File，然后从弹出第对话框中选File，文件名取“欢迎”，IDEA会在上面目录内生成空文件“欢迎.kt”。在“欢迎.kt”中键入如下代码。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        fun main(程参: Array<String>) {
+        println("欢迎")
+        }
+
+    \end{minted}
+% \caption{新建Kotlin文件}
+% \label{lst:新建Kotlin文件}
+% \end{listing}
+
+所有Kotlin函式都返回点啥。没指定返回类型无return语句的Kotlin main函式会默认返回Kotlin.Unit，称为Kotlin式“无返回值”。
+
+中IDEA中，点击main函式左边的绿三角，选“Run '欢迎.kt'”即可运行该函式，在志窗（log）中可见其输出。
+
+\section{传参给Kotlin程序}
+中IDEA中，点击main函式左边的绿三角，选“Edit Run Configuration...”，在弹出对话框的“Program Arguments”文本框内输入参数，多个参数以空格分开，如“小李 20 小刘 23”，再点击OK按钮完成。
+
+Kotlin程序参数被IDEA以Array<String>类型传给main函式，如下：
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        fun main(程参: Array<String>) {
+        println("欢迎, ${程参[0]}")
+        }
+
+    \end{minted}
+% \caption{新建Kotlin文件}
+% \label{lst:新建Kotlin文件}
+% \end{listing}
+
+
+然后按前节方法运行该函式，在志窗（log）中可见其输出。
+
+\section{多物有值}
+Kotlin多数语句是表达式而有值，如无显式返回的函式其实返回Kotlin.Unit。if语句返回真假，但循环语句例外，不是表达式而无值。
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        fun main(程参: Array<String>) {
+            val 单元 = println("欢迎, ${程参[0]}") // => 欢迎, 小李
+            println(单元) // => kotlin.Unit
+          
+            val 得分 = 98
+            val 通过 = if (得分 > 70) true else false
+            println(通过) // => true
+            println("我${if (得分>70) "通过" else "挂科"}了。") // => 我通过了。
+        }
+    \end{minted}
+% \caption{新建Kotlin文件}
+% \label{lst:新建Kotlin文件}
+% \end{listing}
+
+\section{函式示例}
+Kotlin函式由两部分构成：函头——曲括号外的部分，及函体——曲括号及其内语句。
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        import java.util.*
+
+        fun 哪天():String{
+          var 一周 = arrayOf<String>("周一","周二","周三","周四","周五","周六","周日")
+          return (一周[Random().nextInt(6)])
+        }
+        fun 做啥(天 :String) :String{
+            // when句值是满足条件分支的末尾表达式值.
+          return when (天){
+            "周一" -> "打篮球"
+            "周二" -> "登山"
+            "周三" -> "游泳"
+            "周四" -> "打鼓"
+            "周五" -> "唱歌"
+            else -> "发呆"
+          }
+        }
+        fun 周几做啥(){
+          val 天 = 哪天()
+          val 活动 = 做啥(天)
+          println("我${天}${活动}")
+        }
+        
+        fun main(程参: Array<String>) {
+          周几做啥()
+        }
+    \end{minted}
+% \caption{函式示例}
+% \label{lst:函式示例}
+% \end{listing}
+
+\section{简函与函参默认值}
+只含一个表达式的函式可以紧凑地写成简函，即把函体换成其表达式赋值给函头。带默认值的函参没被按位或名传值时则取其默认值。
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        fun 答对么(解: Double, 答案: Double) :Boolean{
+            return if (解 == 答案) true else false
+        }
+        // 对应简函
+        fun 答对(解: Double, 答案: Double) = if (解 == 答案) true else false
+
+        fun 矩形面积(长: Double, 宽:Double) :Double{
+            return 长 * 宽
+        }
+        // 对应简函
+        fun 矩面(长: Double, 宽:Double) :Double = 长 * 宽
+
+        fun 默参(甲: Int, 乙: Boolean = true, 丙: Double = 20.0){
+            println("传入参数：甲=${甲}，乙=${乙}, 丙=${丙}。")
+        }
+
+        fun main(程参: Array<String>) {
+            val 长 = 4.0
+            val 宽 = 5.0
+            val 面积 = 矩形面积(长, 宽)
+            println("长${长}宽${宽}的矩形面积为${面积}")
+            println("长${长}宽${宽}的矩形面积为${矩面(长, 宽)}")
+
+            val 答案 = 20.0
+            val 结果 = 答对(19.0, 答案)
+            println("你的结果${if (结果) "对了" else "错了"}。")
+            println("你的结果${if (答对么(19.0, 答案)) "对了" else "错了"}。")
+
+            // 按位传参
+            默参(1)
+            默参(2,false)
+            默参(3,false, 11.3)
+            // 按位、名传参
+            默参(4, 丙=11.4)
+            默参(5, 丙=11.5, 乙 = false)
+            // 按名传参
+            默参(丙=11.6, 甲=6)
+            默参(丙=11.7, 甲=7, 乙 = false)
+        }
+    \end{minted}
+% \caption{简函与函参默认值}
+% \label{lst:简函与函参默认值}
+% \end{listing}
+
+\section{队列滤式}
+队列滤式可以提取队列中满足条件的元素。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        fun main(程参: Array<String>) {
+            val 产品质量 = intArrayOf(53, 67, 13, 34, 88, 64)
+            // 滤式默认为迫滤
+            println("合格产品：" + 产品质量.filter { it >= 60 })
+
+            // 迫滤：滤则创建完整的滤出队列，完全滤出
+            val 迫滤 = 产品质量.filter { it < 60 }
+            println("迫滤不合格产品：" + 迫滤)
+
+            // 惰滤：要用到满足条件的元素时再滤出之
+            val 惰滤 = 产品质量.asSequence().filter { it < 60 }
+            println("惰滤不合格产品：" + 惰滤)
+            val 全要 = 惰滤.toList() // 要时再滤
+            println("惰滤全部结果：" + 全要)
+
+            // 逐个要惰滤结果
+            val 懒藕 = 惰滤.asSequence().map { it * -1 }
+            println("懒藕：${懒藕}")
+
+            println("懒藕第一个元素：${懒藕.first()}")
+            println("懒藕出了几个：${懒藕}")
+            println("懒藕第一个元素：${懒藕.elementAt(0)}")
+            println("懒藕第二个元素：${懒藕.elementAt(1)}")
+            println("懒藕第三个元素：${懒藕.elementAt(2)}")
+
+            // 全要
+            val 惰藕 = 惰滤.asSequence().map { it - 60 }
+            println("惰藕：${惰藕.toList()}")
+        }
+    \end{minted}
+% \caption{简函与函参默认值}
+% \label{lst:简函与函参默认值}
+% \end{listing}
+
+\section{量函与参函}
+函式可当变量——量函，可当参函——参函。
+量函（Lambda）也称匿名函式，可以当作变量使用。因可做变量，所以可以当参数传递，称参函。带参函的函式叫高阶函式，如前节滤式（filter）和映射（map），传入其中的表达式就被隐式地转换为量函。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+
+        fun 矩形面积(长: Double, 宽:Double) :Double{
+            return 长 * 宽
+        }
+        
+        fun main(程参: Array<String>) {
+            // 匿名函式（lambda），类型由kotlin隐式得出
+            val 面积 = {长: Double, 宽:Double -> 长 * 宽}
+            val 长 = 4.0
+            val 宽 = 5.0
+            println("长${长}宽${宽}的矩形面积为${面积(长, 宽)}")
+
+            // 显式指定匿函类型
+            val 矩积: (Double, Double) -> Double = {长, 宽 -> 长 * 宽}
+            println("长${长}宽${宽}的矩形面积为${矩积(长, 宽)}")
+
+            // 高阶函式（带函参的函式）
+            val 求面积: (Double, Double, (Double,Double)->Double)->Unit = {
+                长,宽,面积函式 -> val 面积 = 面积函式(长,宽)
+                println("长${长}宽${宽}的矩形面积为${面积}")
+            }
+            求面积(5.0, 8.0, 矩积)
+            求面积(5.0, 8.0, ::矩形面积) // 有名函式当函参
+
+            // 若高阶函式仅最后的参数为函参，也可这样传，但会造成阅读困难
+            求面积(5.0, 8.0){ 长,宽 -> 长*宽 }
+        }
+    \end{minted}
+% \caption{简函与函参默认值}
+% \label{lst:简函与函参默认值}
+% \end{listing}
+
+% 满江红·怒发冲冠\citep{岳飞:满江红}
+% \begin{verse}
+%     [宋] 岳飞
+%     怒发冲冠，凭栏处潇潇雨歇。
+%     抬望眼，仰天长啸，壮怀激烈。
+%     三十功名尘与土，
+%     八千里路云和月。
+%     莫等闲白了少年头，空悲切。
+
+%     靖康耻，犹未雪；
+%     臣子恨，何时灭！
+%     驾长车踏破贺兰山缺。
+%     壮志饥餐胡虏肉，
+%     笑谈渴饮匈奴血。
+%     待从头收拾旧山河，朝天阙。    
+% \end{verse}
+
+
+
+%\bibliographystyle{unsrtnat}  %% 若用数字引用需将 natbib选项设为"numbers" 
+% \bibliographystyle{dcu}
+% \bibliography{参考}

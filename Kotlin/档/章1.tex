@@ -1,0 +1,74 @@
+\chapter{安装学习环境}
+
+\section{Kotlin优点}
+Kotlin是一门现代新型编程语言，易读、简洁、安全、能与Java互相调用，开发安卓软件的首选。
+
+\section{装Java开发包}
+下载并安装JDK版本 $\geq$ 1.8，阿里巴巴的如[龙井8或11](http://dragonwell-jdk.io/)。
+在命令行中查看java及javac版本，验证安装成功。
+\begin{listing}[H]
+    \begin{minted}[linenos,frame=lines]{bash}
+        java -version
+        javac -version
+    \end{minted}
+    \caption{查看java及javac版本}
+    \label{lst:java版}
+\end{listing}
+
+\section{装集成开发环境}
+下载并安装\href{https://www.jetbrains.com/idea/download}{IntelliJ IDEA}。
+
+\subsection{在IDEA中写第一个程序}\label{子节:集程1} 
+运行IDEA，按如下步骤创建、制造并运行第一个Kotlin程序：
+\begin{enumerate}
+    \item 在欢迎对话框中选“Create New Project (创建新工程)”
+    \item 在“New Project (新工程)”页左框选Kotlin，右框选Kotlin/JVM，点击Next去下页
+    \item 名工程为“问候”，依喜好自行修改其它选项
+    \item 点击Finish，IDEA即开始创建一个上述设置的Kotlin工程
+    \item 在工具条中点击锤子制造工程，点击向右绿三角运行
+\end{enumerate}
+
+
+\subsection{在IDEA中使用REPL} 
+接上节，从菜单Tools -> Kotlin -> Kotlin REPL 打开REPL——Read Evaluate Print Loop（读算印环）,
+往REPL键入代码\ref{lst:首用REPL}然后按CTRL+回车运行。
+\begin{listing}[H]
+    \begin{minted}[linenos,frame=lines]{kotlin}
+        fun 欢迎词(){
+            println("您好，欢迎您使用Kotlin。")
+        }
+        欢迎词()
+    \end{minted}
+    \caption{首次使用Kotlin REPL}
+    \label{lst:首用REPL}
+\end{listing}
+
+REPL也可以在Kotlin的命令行交互环境内使用，运行命令kotlinc即进入该环境。
+\begin{listing}[H]
+    \begin{minted}[linenos,frame=lines]{kotlin}
+        $ kotlinc
+        Welcome to Kotlin version 1.5.0 (JRE 1.8.0_292-b10)
+        Type :help for help, :quit for quit
+        >>> fun 欢迎(){
+        ... println("您好，欢迎使用kotlin。")
+        ... }
+        >>> 欢迎()
+        您好，欢迎使用kotlin。
+\end{minted}
+\caption{Kotlin命令行REPL}
+\label{lst:Kotlin命令行}
+\end{listing}
+
+\section{李白诗歌}
+
+《静夜思》\citep{李白:静夜思}
+\begin{verse}
+床前明月光，疑是地上霜。
+举头望明月，低头思故乡。    
+\end{verse}
+ 
+
+%\bibliographystyle{unsrtnat}  %% 若用数字引用需将 natbib选项设为"numbers"  
+\bibliographystyle{dcu}
+\bibliography{参考}
+

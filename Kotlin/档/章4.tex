@@ -1,0 +1,237 @@
+\chapter{对象编程}
+
+\section{概念}
+类、对象、接口、继承、封装、属性、方法、包
+
+类成员为其属性与方法的统称，其可见域用见词限定：
+\begin{itemize}
+    \item private: 本类内可见
+    \item protected：本类及其子类可见
+    \item public：无见词成员默域，到处可见
+    \item internal：编译单元的文件内可见，编译单元是多个文件编译成的库或程序。
+\end{itemize}
+
+\section{造类}
+重用代码组织在包内，先造包。
+
+在IDEA工程面板中，右键点击“问候（工程名）->src->main-kotlin”，从弹出菜单中选“New -> Package”，往弹出对话框的文本框内键入“礼品”做包裹名。
+
+再右键点击包裹名“礼品”，从弹出菜单中选“New -> Kotlin Class/File”，在弹出对话框选Class，文本框内键入“瓷蛙”做类名。IDEA生成名为“瓷蛙.kt”的文件，输入如下代码
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        package 礼品
+        import java.awt.Color
+
+        class 瓷蛙 (var 颜色:Color = Color.RED, var 重量:Double = 50.0, var 价格:Double = 32.9){
+
+            // 可有一个或多个初始化模块
+            init {
+                println("初始化1: 主构函式调用一次")
+            }
+            init {
+                println("初始化2：主构函式调用一次")
+                println("主构函式的参数：\n"+"\t颜色：${颜色.toString()}\n"+
+                    "\t重量：${重量}克\n"+"\t价格：\$${价格}\n")
+            }
+            // 一个或多个次构函，每个次构函必须先调用主构函一次，直接地——this()，或间接地——调用别的次构函
+            // 不建议使用次构函，应使用主构函集中初始化
+            constructor(高度:Double):this(){
+                this.高度 = 高度
+            }
+
+            // var定义可变属性，val定义只读属性
+            var 高度:Double = 1.0
+            var 保费:Double // Kotlin隐式为属性生成设法set()与取法get()，也可显式定义
+                get() = 价格*保率
+                set(保费) {保率 = 保费/价格}
+            var 保率:Double = 1.0
+
+
+            // 方法
+            override fun toString():String{
+                return ("瓷蛙描绘：\n"+"\t颜色：${颜色.toString()}\n"+
+                    "\t重量：${重量}克\n"+"\t价格：\$${价格}\n"+"\t高度：${高度}\n")
+            }
+
+            fun 瓷蛙描绘(){
+                println(toString())
+            }
+            fun 快递保费(){
+                println("保费：${保费}\t 保率:${保率}")
+            }
+        }
+
+    \end{minted}
+% \caption{新建Kotlin文件}
+% \label{lst:新建Kotlin文件}
+% \end{listing}
+
+创建主函式来使用“瓷蛙类”。右键点击包裹名“礼品”，从弹出菜单中选“New -> Kotlin Class/File”，在弹出对话框选File，文本框内键入“main.kt”做档名,输入如下代码
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        package 礼品
+        import java.awt.Color
+        
+        fun 买瓷蛙(){
+          // 用默认构函创建对象
+          val 红瓷蛙 = 瓷蛙()
+        
+          // 使用对象的方法
+          红瓷蛙.瓷蛙描绘()
+        
+          // 修改对象的属性
+          红瓷蛙.重量 = 500.0
+          红瓷蛙.价格 = 123.99
+        
+          println(红瓷蛙)
+        
+          // 用主构函法1造对象
+          val 黑瓷蛙 = 瓷蛙(颜色 = Color.BLACK)
+          黑瓷蛙.瓷蛙描绘()
+        
+          // 用主构函法2造对象
+          val 蓝瓷蛙 = 瓷蛙(颜色 = Color.BLUE, 价格 = 100.99)
+          蓝瓷蛙.瓷蛙描绘()
+        
+          // 用次构函造对象
+          val 黄瓷蛙 = 瓷蛙(高度 = 2.3)
+          黄瓷蛙.瓷蛙描绘()
+        }
+        
+        fun main(程参: Array<String>){
+          买瓷蛙()
+        
+          val 金瓷蛙 =瓷蛙(价格 = 2999.99)
+          金瓷蛙.快递保费()
+          金瓷蛙.保费 = 8999.0
+          金瓷蛙.快递保费()
+        }
+
+    \end{minted}
+% \caption{新建Kotlin文件}
+% \label{lst:新建Kotlin文件}
+% \end{listing}
+
+类可以包含一个或多个初始化(init)模块，它们被主构函自动调用，因此它们可以使用主构函的参数。初始化模块使用的变量必须先定义。
+
+\section{继承与子类}
+Kotlin的类默认不能被继承，其成员默认不能被重载，都需标以open才行。
+
+\section{抽象类与接口}
+抽象类及接口用来定义公共属性和行为：
+\begin{itemize}
+    \item 抽象类与接口都不能例化。
+    \item 抽象类有构函，默认open，无需显式标注。但其属性与方法默认为非抽象，无需子类实现而直接使用。显式标以abstract的方法和属性则需子类实现。
+    \item 抽象类有构函而接口无。
+    \item 子类只能继承一个抽象类，但可继承多个接口。
+\end{itemize}
+
+\section{接口委托}
+纯属性接口委托给单对象来实现，纯行为接口委托给类。
+
+\section{数据类}
+Kotlin数据类类似C结构，但它们是对象，赋值时只赋引用。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        data class 点(var 横:Double = 0.0, var 纵:Double = 0.0){
+            fun 显(){
+                println("座标 =（${横}，${纵}）")
+            }
+        
+            override fun toString(): String {
+                return "（${横}，${纵}）"
+            }
+        }
+        fun main(args: Array<String>) {
+            val 原点 = 点()
+            原点.显()
+            println("原点座标 = ${原点}")
+        
+            val 横点 = 点(5.0)
+            val 叠原点 = 原点
+            println("横点 == 原点：${if (横点 == 原点) "是" else "不"}")
+            println("叠原点 == 原点：${if (叠原点 == 原点) "是" else "不"}")
+            println("叠原点原点指同物：${if (叠原点 === 原点) "是" else "不"}")
+        
+            // 复制
+            val 子点 = 横点.copy()
+            println("横点 == 子点：${if (横点 == 子点) "是" else "不"}")
+            println("横点子点指同物：${if (横点 === 子点) "是" else "不"}")
+        
+            // 解构
+            val (横, _) = 横点
+            println("横标 = ${横}")
+        }        
+    \end{minted}
+% \caption{数据类}
+% \label{lst:数据类}
+% \end{listing}
+
+\section{独物、枚举、闭类}
+独物只有一个，冠以object。
+
+枚举有名、号、值。
+
+闭类只能在其所处文件内继承。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        // 1. 独类
+        interface 帝{
+            var 号:String
+        }
+        object  始皇:帝{
+            override var 号: String= "秦始皇"
+        }
+        // 2. 枚举
+        enum class 色(val 值: Int) {
+            红(0xFF0000), 绿(0x00FF00), 蓝(0x0000FF);
+        }
+        enum class 向(val 角度: Double){
+            东(0.0), 南(-90.0), 西(180.0), 北(90.0);
+        }
+        // 3. 闭类
+        sealed class 哺乳动物类{
+            override fun toString(): String {
+                return "我是哺乳动物。"
+            }
+        }
+        class 灵长动物类:哺乳动物类(){
+            override fun toString(): String {
+                return "我是灵长动物"
+            }
+        }
+        class 有蹄类:哺乳动物类(){
+            override fun toString(): String {
+                return "我是有蹄动物"
+            }
+        }
+        
+        fun main(args: Array<String>) {
+            // 1. 独物
+            println("${始皇}的值：${始皇.号}")
+            // 2. 枚举
+            println("红：名——${色.红.name}，号——${色.红.ordinal}，色——${色.红.值}")
+            println("北：名——${向.北.name}，号——${向.北.ordinal}，向——${向.北.角度}")
+            // 3. 闭类
+            val 动物:哺乳动物类 = 有蹄类()
+            when(动物){
+                is 有蹄类 -> {
+                    println("有蹄类")
+                    println(动物)
+                }
+                is 灵长动物类 -> println("灵长动物类")
+                else -> println("哺乳动物类")
+            }
+        }               
+    \end{minted}
+% \caption{数据类}
+% \label{lst:数据类}
+% \end{listing}

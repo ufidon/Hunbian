@@ -1,0 +1,59 @@
+\documentclass[11pt,oneside]{ctexbook}
+\usepackage{fontspec}
+\setmainfont{Noto Serif CJK SC}
+\setsansfont{Noto Sans CJK SC}
+\setmonofont{Noto Sans Mono CJK SC}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{unicode-math}
+\usepackage{xeCJK}
+\xeCJKsetup{CJKmath=true}
+
+% 改自 https://www.overleaf.com/ 模板
+\title{多源文件 \LaTeX 项目 }
+
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx,xcolor}
+\usepackage{listings,array,tabularx,booktabs,multirow,multicol}
+\usepackage{tikz}
+\usepackage{tikzsymbols}
+\usepackage[most]{tcolorbox}
+\usepackage[chapter]{minted}
+\makeatletter
+\AtBeginEnvironment{minted}{\去红框}
+\def\去红框{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
+
+\renewcommand{\listingscaption}{例程}
+\renewcommand{\listoflistingscaption}{程录}
+\usepackage[sectionbib]{natbib}
+\usepackage{chapterbib}
+%%% 修改参考书目 标题
+% \renewcommand{\bibname}{参考书目}
+
+%%% 将各章参考书目放入目录.  
+% \usepackage[nottoc]{tocbibind}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks=true,bookmarksnumbered]{hyperref}
+\begin{document}
+\frontmatter
+\include{封面.tex}
+
+{
+  \hypersetup{linkcolor=blue}
+  \tableofcontents
+  \listoflistings
+}
+
+
+\mainmatter
+\include{章1}
+\include{章2}
+\include{章3}
+\include{章4}
+\include{章5}
+
+\backmatter
+% 参考文献、词汇及索引
+
+\end{document}
+

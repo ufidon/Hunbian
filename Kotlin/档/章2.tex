@@ -1,0 +1,347 @@
+\chapter{Kotlin基础}
+
+\section{类型与算符}
+Kotlin类似Java，属静态强类型语言，支持Java的数型如Int、Long、Float、Double，及算符+、-、*、/，可以在Kotlin的命令行交互环境中体验。注意其中的数型自动判定、整数除法、及整数实数（带小数点）混合运算结果类型。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines]{kotlin}
+        >>> 1+3
+        res0: kotlin.Int = 4
+        >>> 4-1
+        res1: kotlin.Int = 3
+        >>> 10/2
+        res2: kotlin.Int = 5
+        >>> 2.0/3.0
+        res3: kotlin.Double = 0.6666666666666666
+        >>> 3.0*4.0
+        res4: kotlin.Double = 12.0
+        >>> 1+3.0
+        res9: kotlin.Double = 4.0
+        >>> 2.0*3
+        res10: kotlin.Double = 6.0
+        >>> 3/4
+        res11: kotlin.Int = 0
+        >>> 3/4.0
+        res12: kotlin.Double = 0.75
+        >>> 
+    \end{minted}
+% \caption{Kotlin数型与算符}
+% \label{lst:Kotlin数型与算符}
+% \end{listing}
+
+Kotlin有两种量型：只读与可变。只读量用val（value，值的缩写）申明，只可赋值一次，再次赋值将出错。可变量用var（variable，可变的缩写），可多次赋值。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines]{kotlin}
+        >>> // 申明量，类型由kotlin隐式推导
+        >>> var 身高 = 172
+        >>> 身高 = 180
+        >>> val 小赵身高=150
+        >>> 小赵身高 = 172
+        error: val cannot be reassigned
+        小赵身高 = 172
+        ^
+        >>> // 显式指定量型
+        >>> var 班级人数: Int = 50
+        >>> var 班级平均分: Double = 95.8        
+    \end{minted}
+% \caption{Kotlin量型与赋值}
+% \label{lst:Kotlin量型与赋值}
+% \end{listing}
+
+Kotlin不隐转数型，需在代码中明确指定。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines]{kotlin}
+        >>> val 身高: Int = 172
+        >>> val b身高 = 身高.toByte()
+        >>> val c身高 = 身高.toChar()
+        >>> b身高
+        res17: kotlin.Byte = -84
+        >>> c身高
+        res18: kotlin.Char = ¬
+        >>> val 节: Byte=10
+        >>> val 整1: Int = 节
+        error: type mismatch: inferred type is Byte but Int was expected
+        val 整1: Int = 节
+                      ^
+        
+        >>> val 串1: String = 整1
+        error: unresolved reference: 整1
+        val 串1: String = 整1
+                         ^
+        
+        >>> val 实数: Double = 节
+        error: type mismatch: inferred type is Byte but Double was expected
+        val 实数: Double = 节
+                         ^
+        
+        >>> val 整2: Int = 节.toInt()
+        >>> 整2
+        res24: kotlin.Int = 10
+        >>> val 串2: String = 节.toString()
+        >>> 串2
+        res26: kotlin.String = 10
+        >>> val 实数: Double = 节.toDouble()
+        >>> 实数
+        res28: kotlin.Double = 10.0
+        >>> // 大数字分组
+        >>> val 一亿 = 1_0000_0000
+        >>> val 深圳座机号 = 755_1234_5678
+        >>> val 十六进制数 = 0x55_AA_55_aa
+        >>> var 二进制数 = 0b0101_0101_1010_1010
+        >>> 一亿
+        res34: kotlin.Int = 100000000
+        >>> 深圳座机号
+        res35: kotlin.Long = 75512345678
+        >>> 十六进制数
+        res36: kotlin.Int = 1437226410
+        >>> 二进制数
+        res37: kotlin.Int = 21930
+        >>> val 长整数 = 2L
+        >>> 长整数
+        res39: kotlin.Long = 2                
+    \end{minted}
+% \caption{Kotlin数型与转换}
+% \label{lst:Kotlin数型与转换}
+% \end{listing}
+
+Kotlin字串由单引号‘ ’或双引号“ ”包围，用 + 拼接。字串模板内用\$\{量名\}表示其值，易读。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines]{kotlin}
+        >>> val 鱼数 = 3
+        >>> val 熊掌数 = 5
+        >>> var 宣称1 = "我有${鱼数}鱼" + "${熊掌数}熊掌"
+        >>> var 宣称2 = "我共有${鱼数+熊掌数}鱼与熊掌"
+        >>> 宣称1
+        res51: kotlin.String = 我有3鱼5熊掌
+        >>> 宣称2
+        res52: kotlin.String = 我共有8鱼与熊掌
+        >>> // 字串模板需用双引号，单引号出错
+        >>> var 宣称3 = '我共有${鱼数+熊掌数}鱼与熊掌'
+        error: too many characters in a character literal ''我共有${鱼数+熊掌数}鱼与熊掌''
+        var 宣称3 = '我共有${鱼数+熊掌数}鱼与熊掌'
+          ^
+            
+    \end{minted}
+% \caption{字串拼接与模板}
+% \label{lst:字串拼接与模板}
+% \end{listing}
+
+\section{贰值与比较式}
+贰值（Boolean）为真假或对错相对立的两个值，常用于比较式的结果。比较算符因此也称贰符，如==、!=、<、>、<=和>=。多个比较式用\&\&（与）、||（或）、!（非）连接，组成复杂条件，用作if/else（若/否）句的条件。
+
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines]{kotlin}
+        >>> // 若句
+        >>> val 心跳频率 = 70
+        >>> if (心跳频率 in 45..105){ println("心跳频率正常") }
+        心跳频率正常
+        >>> // 若否句
+        >>> val 白球数 = 11
+        >>> val 黑球数 = 13
+        >>> if (白球数 > 黑球数){
+        ...     println("白球比黑球多。")
+        ... } else {
+        ...     println("白球比黑球少。")
+        ... }
+        白球比黑球少。
+        >>> // 串联若否句，多分支条件式
+        >>> val 得分 = 97
+        >>> if (得分 >= 90){
+        ...     println("优")
+        ... } else if (得分 >= 80){
+        ...     println("良")
+        ... } else if (得分 >=70){
+        ...     println("中")
+        ... } else {
+        ...     println("差")
+        ... }
+        优
+        >>> // when句，类似Java的switch句，可用范围作条件
+        when(得分){
+        ...    in 90..100 -> println("优")
+        ...    in 80..89 -> println("良")
+        ...    in 70..79 -> println("中")
+        ...    else -> println("差")
+        ...}
+        优
+    \end{minted}
+% \caption{若否句}
+% \label{lst:若否句}
+% \end{listing}
+
+\section{可空变量}
+可空变量可取空值(null)，Kotlin变量默认不可空。
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines]{kotlin}
+        >>> // Kotlin变量默认不可空。
+        >>> var 班级人数: Int = null
+        error: null can not be a value of a non-null type Int
+        var 班级人数: Int = null
+                        ^
+        >>> // 用类型?定义可空变量
+        >>> var 得分: Double? = null
+        >>> 得分
+        res96: kotlin.Double? = null
+        >>> 得分 = 98.9
+        >>> 得分
+        res98: kotlin.Double? = 98.9
+        >>> // 用若否句判断变量值为空
+        >>> var 支付宝金额 = 12
+        >>> if (支付宝金额 != null){
+        ...     支付宝金额 -= 6
+        ... }
+        >>> // 用?判断可空变量值空否？不空则调用成员方法dec()
+        >>> 支付宝金额 = 支付宝金额?.dec()
+        >>> 支付宝金额
+        res105: kotlin.Int = 5
+        >>> // 不空则调用成员方法dec()，空则取?:（elvis算符）后面的值，这里是0
+        >>> 支付宝金额 = 支付宝金额?.dec() ?: 0
+        >>> 支付宝金额
+        res107: kotlin.Int = 4
+        >>> // 指针或引用的非空判符!!可把任何量转换为非空型，若其值为空则抛出异常NullPointerExceptions
+        >>> var 名字:String? = null
+        >>> val 名长 = 名字!!.length
+        java.lang.NullPointerException
+        >>> 名字 = "张三"
+        >>> val 名长 = 名字!!.length
+        >>> 名长
+        res112: kotlin.Int = 2
+
+    \end{minted}
+% \caption{可空变量}
+% \label{lst:可空变量}
+% \end{listing}
+
+\section{队、列及循环}
+队（array）和列（list）是Kotlin两组合型，类似Java的队和列。
+% \begin{listing}[H]
+    \begin{minted}[linenos,breaklines,frame=lines,autogobble,python3,
+        style=friendly]{kotlin}
+        // 1. 造列
+        // listOf<T>(...)造的列不可更改
+        var 宠物 = listOf<String>("鹦鹉","猫","蜥蜴","壁虎")
+        println(宠物) // => [鹦鹉, 猫, 蜥蜴, 壁虎] 
+        
+        // mutableListOf<T>(...)造的列可以更改
+       var 水果 = mutableListOf<String>("苹果","李","梨","樱桃")
+        println(水果) // => [苹果, 李, 梨, 樱桃]
+        水果.add("柚")
+        println(水果) // => [苹果, 李, 梨, 樱桃, 柚]
+        水果.removeAt(0)
+        水果.remove("梨")
+        println(水果) // => [李, 樱桃, 柚]
+        水果.remove("梨") // => res1: kotlin.Boolean = false 
+
+        // 2. 造队
+        // 混型队
+        val 家禽 = arrayOf("鸡","鸭","鹅", 3)
+        println(家禽) // => [Ljava.lang.Object;@5cb88b6b        
+        println(java.util.Arrays.toString(家禽)) // => [鸡, 鸭, 鹅, 3] 
+
+        家禽[0] // => res4: kotlin.Any = 鸡        
+        家禽[1]="鸟"
+        error: type mismatch: inferred type is String but Nothing was expected
+        家禽[1]="鸟"
+            ^
+
+        家禽.get(2) // => res8: kotlin.Any = 鹅        
+        家禽.size // => res9: kotlin.Int = 4
+
+        // 纯型队
+        val 整数队1 = intArrayOf(5,3,4) // 列举造队
+        val 整数队2 = intArrayOf(6,8,12)
+        var 合并 = 整数队1 + 整数队2
+        println(合并[4]) // => 8
+
+        var 偶数 = Array<Int>(6){it*2} // 公式法造队
+        println(偶数)
+        println(java.util.Arrays.toString(偶数))
+        [Ljava.lang.Integer;@15d18b61[0, 2, 4, 6, 8, 10]
+
+        // 嵌套
+        val 年龄 = intArrayOf(18, 20, 21)
+        var 名字 = listOf<String>("张三", "李四", "王五")
+        val 学生 = listOf(年龄, 名字, 3, "三班")
+        println(学生) => [[I@51bba775, [张三, 李四, 王五], 3, 三班]
+
+        // 遍访队列元素
+        var 驴友群 = arrayOf("张三", "李四", "王五")
+        for (驴友 in 驴友群){
+            print(驴友+" ")
+        } // => 张三 李四 王五         
+
+        for ((号,名) in 驴友群.withIndex()){
+            print("第${号}号驴友叫${名} ")
+        } // => 第0号驴友叫张三 第1号驴友叫李四 第2号驴友叫王五 
+
+        // 域与间隔
+        for (数 in 3..7){
+            print("${数} ")
+        } // => 3 4 5 6 7 
+
+        for (数 in 9 downTo 1 step 3){
+            print("${数} ")
+        } // => 9 6 3
+        
+        for (字母 in 'x'..'z'){
+            print("${字母} ")
+        } // => x y z 
+        
+        for (字 in '不'..'丑'){
+            print("${字} ")
+        } // => 不 与 丏 丐 丑       
+
+        for (字 in '不'..'丑' step 2){
+            print("${字} ")
+        } // => 不 丏 丑 
+        
+        // 3. 循环
+        var 数 = 9
+        while (数 < 10){
+            数++
+            print("她笑了${数}次 ")
+        } // => 她笑了10次
+        
+        do {
+            数--
+            print("她笑了${数}次 ")
+        } while (数 > 10) // => 她笑了9次
+        
+        repeat(2){
+            print("她又笑了${数}次 ")
+        } // => 她又笑了9次 她又笑了9次
+          
+        // 注. var及val声明的队和可变列都可以更改其内容，但只有var的可改成引用别的队列，而val的不能
+    \end{minted}
+% \caption{队列}
+% \label{lst:队列}
+% \end{listing}
+
+
+
+
+
+满江红·怒发冲冠\citep{岳飞:满江红}
+\begin{verse}
+    [宋] 岳飞
+    怒发冲冠，凭栏处潇潇雨歇。
+    抬望眼，仰天长啸，壮怀激烈。
+    三十功名尘与土，
+    八千里路云和月。
+    莫等闲白了少年头，空悲切。
+
+    靖康耻，犹未雪；
+    臣子恨，何时灭！
+    驾长车踏破贺兰山缺。
+    壮志饥餐胡虏肉，
+    笑谈渴饮匈奴血。
+    待从头收拾旧山河，朝天阙。    
+\end{verse}
+
+
+%\bibliographystyle{unsrtnat}  %% 若用数字引用需将 natbib选项设为"numbers" 
+\bibliographystyle{dcu}
+\bibliography{参考}
