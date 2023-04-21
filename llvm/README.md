@@ -58,5 +58,6 @@ llvm-project/clang/lib/Basic/IdentifierTable.cpp
 
 ## 参考
 * [llvm 开始](https://llvm.org/docs/GettingStarted.html)
+* [LLVM MinGW](https://github.com/mstorsjo/llvm-mingw)
 
 
